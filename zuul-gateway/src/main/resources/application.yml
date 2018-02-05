@@ -1,0 +1,38 @@
+server:
+  port: 8765
+  
+spring:
+  config:
+    name:  zuulserver
+  application:
+    name: zuulserver
+ 
+      
+eureka:
+  client:
+    registerWithEureka: false
+    serviceUrl: 
+      defaultZone: http://localhost:8761/eureka/
+  
+
+zuul:
+  routes:
+    crudproducto:
+      path: /producto/productos/**
+      service-id: crudproducto
+      strip-prefix: false
+      
+    operacionesbasicas:
+      path: /operaciones/**
+      service-id: operacionesbasicas
+      strip-prefix: false
+      
+    crudcliente:
+      path: /producto/**
+      service-id: crudcliente
+      strip-prefix: false
+
+    operacionescliente:
+      path: /**
+      service-id: operacionescliente
+      strip-prefix: false
